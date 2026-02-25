@@ -1,6 +1,7 @@
 trigger_key = "KEY_PAUSE"
 layout_switch_combo = ["KEY_LEFTCTRL", "KEY_SPACE"]
 ignored_keywords = ["mouse", "touchpad", "video", "button", "headset"]
+clipboard_timeout_ms = 1000
 buffer_size = 100
 retry_delay_ms = 1000
 device_timeout_ms = 60000

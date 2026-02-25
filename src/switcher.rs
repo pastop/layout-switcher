@@ -20,6 +20,7 @@ fn default_buffer_size() -> usize {
 pub struct Config {
     device_path: Option<String>,
     trigger_key: String,
+    clipboard_timeout_ms: u64,
     layout_switch_combo: Vec<String>,
     ignored_keywords: Vec<String>,
     #[serde(default = "default_buffer_size")]
@@ -206,7 +207,7 @@ pub fn run_main_loop(device_path: &Path, state: &mut Switcher) -> Result<(), Box
                 .and_then(|t| now.duration_since(t).ok()) // Получаем Option<Duration>
                 .unwrap_or_default();
             
-            if duration.as_secs() > 3 {
+            if duration.as_millis() > (state.config.clipboard_timeout_ms as u128) {
                 state.buffer.clear();
             }
             state.last_event_time = Some(now);
